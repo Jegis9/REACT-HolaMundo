@@ -1,7 +1,13 @@
 //IMPORTAR ARCHIVO TITULO
-import Card from "./components/Card";
+
+import Card, { CardBody } from "./components/Card";
+
 function App() {
-  return <Card body={"Hola mundo!!!"}></Card>;
+  return (
+    <Card>
+      <CardBody title="Hola mundo soy el titulo" text="Soy el contenido" />
+    </Card>
+  );
 }
 
 export default App;
