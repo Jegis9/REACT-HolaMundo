@@ -4,7 +4,7 @@ import Card, { CardBody } from "./components/Card";
 import List from "./components/List";
 
 function App() {
-  const list = ["Goku", "Eren", "Kasaki"];
+  const list: string[] = [];
 
   //SE CREA LA FUNCION HANDLESELECT PARA IMPRIMIR FUNCION
   const handleSelect = (Element: string) => {
@@ -17,6 +17,9 @@ function App() {
   };
   return (
     <Card>
+      {/* PRIMERO SE TIENE QUE EVALUAR SI LA LISTA ES DIFERENTE A 0 ENTONCES MUESTRA LA LISTA
+      SI SE DEJA SIN LA CONDICIONAL DIFERENTE SE MOSTRARA EL 0 EL CUAL NO DEBE DE APARECER */}
+      {list.length !== 0 && "Lista llena"}
       <CardBody title="Hola mundo soy el titulo" text="Soy el contenido" />
 
       <List data={list} onSelect={handleSelect} />
