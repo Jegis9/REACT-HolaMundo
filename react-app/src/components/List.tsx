@@ -2,22 +2,27 @@ import { useState } from "react";
 
 type Props = {
   data: string[];
+  //SE CREA UN UNA FUNCION PARA QUE RECIBA EL ELEMENTO Y NO DEVUELVA NADA
+  //ESTO PUEDE SER OPCIONAL
+  onSelect?: (element: string) => void;
 };
 
-export default function List({ data }: Props) {
-  //MANEJO DE ESTADO, QUE SIRVE PARA PODER DEFINIR EL VALOR INICIAL, NO DEBE DE CAMBIAR
+export default function List({ data, onSelect }: Props) {
   const [index, setIndex] = useState(1);
 
-  //CUANDO SE HACE CLIC TOMA EL VALOR INDEX DEL ELEMENTO SELECCIONADO
-  const handleClick = (i: number) => {
+  //SE AGREGA EL ELEMENTO AL DESTRICTURING ELEMENTO
+  const handleClick = (i: number, element: string) => {
     setIndex(i);
+    //SE LE PASA A LA FUNCION EL ELEMENTO COMO PARAMETRO
+    onSelect?.(element);
   };
 
   return (
     <ul className="list-group">
       {data.map((element, i) => (
         <li
-          onClick={() => handleClick(i)}
+          //SE AGREGFA EL ELEMENTO QUE SE PASA COMO PARAMETRO
+          onClick={() => handleClick(i, element)}
           key={element}
           //SI EL INDEX CAMBIA AL SELECCIONADO COLOCA EL INDEX EN ACTIVO DE LO CONTRARIO NO
           //RENDERIZA NINGUNA COSA
