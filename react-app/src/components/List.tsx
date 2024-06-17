@@ -1,22 +1,27 @@
+import { useState } from "react";
+
 type Props = {
   data: string[];
 };
 
 export default function List({ data }: Props) {
-  // SE CREA UNA FUNCION PARA PODER ENVIAR EL PARAMETRO
-  const handleClick = (e: string) => {
-    console.log(e);
+  //MANEJO DE ESTADO, QUE SIRVE PARA PODER DEFINIR EL VALOR INICIAL, NO DEBE DE CAMBIAR
+  const [index, setIndex] = useState(1);
+
+  //CUANDO SE HACE CLIC TOMA EL VALOR INDEX DEL ELEMENTO SELECCIONADO
+  const handleClick = (i: number) => {
+    setIndex(i);
   };
 
   return (
     <ul className="list-group">
-      {data.map((element) => (
+      {data.map((element, i) => (
         <li
-          //   SE LLAMA A LA FUNCION Y SE LE ENVIA COMO PARAMETRO EL ELEMENTO DE LA LISTA
-          //   PARA MOSTRAR CUANDO SE DE CLIC
-          onClick={() => handleClick(element)}
+          onClick={() => handleClick(i)}
           key={element}
-          className="list-group-item"
+          //SI EL INDEX CAMBIA AL SELECCIONADO COLOCA EL INDEX EN ACTIVO DE LO CONTRARIO NO
+          //RENDERIZA NINGUNA COSA
+          className={`list-group-item ${index == i ? "active" : ""}`}
         >
           {element}
         </li>
